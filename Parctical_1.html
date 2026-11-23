@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject CalCultor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(126, 123, 235);
+        }
+
+        .subject-marks-calcultor {
+            padding: 20px;
+            display: flex;
+        }
+
+        .input-section {
+            padding: 25px;
+            width: 50%;
+            display: flex;
+            flex-direction: row;
+            background-color: #bc7474;
+        }
+
+        #outputsection {
+            width: 50%;
+            background-color: antiquewhite;
+            padding: 20px;
+        }
+
+        .subject-input-group {
+            padding-right: 70px;
+        }
+
+        input {
+            display: flex;
+            border: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            padding: 10px 55px;
+            padding-left: 5px;
+            font-size: 15px;
+        }
+
+        .btn {
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: bisque;
+            border: none;
+            padding: 15px 20px;
+            font-size: 15px;
+        }
+
+        .calculator-sub {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            font-size: 25px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .pass{
+            background-color: green;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+
+        .fail{
+            background-color: red;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 10px
+        }
+    </style>
+</head>
+
+<body>
+    <div class="subject-marks-calcultor">
+        <div class="input-section">
+            <div class="subject-input-group">
+                <label for="sub1">Subject 1 (out of 100)</label>
+                <input type="text" id="sub1" placeholder="Enter Marks">
+
+                <label for="sub2">Subject 2 (out of 100)</label>
+                <input type="text" id="sub2" placeholder="Enter Marks">
+
+                <label for="sub3">Subject 3 (out of 100)</label>
+                <input type="text" id="sub3" placeholder="Enter Marks">
+            </div>
+            <div>
+                <label for="sub4">Subject 4 (out of 100)</label>
+                <input type="text" id="sub4" placeholder="Enter Marks">
+
+                <label for="sub5">Subject 5 (out of 100)</label>
+                <input type="text" id="sub5" placeholder="Enter Marks">
+
+                <div class="btn">
+                    <button type="button" onclick="calculator()">Marks CalCultor</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="outputsection">
+
+        </div>
+    </div>
+
+
+    <script>
+        function calculator() {
+            let subj_1 = Number(document.getElementById("sub1").value);
+            let subj_2 = Number(document.getElementById("sub2").value);
+            let subj_3 = Number(document.getElementById("sub3").value);
+            let subj_4 = Number(document.getElementById("sub4").value);
+            let subj_5 = Number(document.getElementById("sub5").value);
+
+
+
+            let Total_Marks = subj_1 + subj_2 + subj_3 + subj_4 + subj_5;
+            // console.log(Total_Marks);
+
+            let Percentage = (Total_Marks) / 500 * 100;
+            // console.log(Percentage);
+
+            let FinalResult = result(Percentage);
+            console.log(FinalResult);
+
+
+            let Result_display = document.getElementById("outputsection");
+            Result_display.innerHTML = `
+            <div class="calculator-sub">
+                <h2>Total Marks</h2>
+                <h4>${Total_Marks}/500</h4>
+            </div>
+            <div class="calculator-sub">
+                <h2>Percentage</h2>
+                <h4>${Percentage.toFixed(2)}%</h4>
+            </div>
+            <div class="calculator-sub">
+                <h2>Result</h2>
+                <h4 class="${FinalResult === "pass" ? "pass" : "fail"}">${FinalResult}</h4>
+            </div>
+            `;
+        };
+
+        function result(Percentage) {
+            if (Percentage > 35) {
+                return "pass"
+            } else {
+                return "fail"
+            }
+        }
+    </script>
+</body>
+
+</html>
