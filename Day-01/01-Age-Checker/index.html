@@ -14,7 +14,7 @@
         }
 
         body {
-            background-color: rgb(128, 247, 247);
+            background: linear-gradient(90deg, rgba(42, 149, 155, 1) 0%, rgba(87, 199, 133, 1) 97%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,7 +27,7 @@
             justify-content: center;
             align-items: center;
             min-height: 40vh;
-            margin: 0;
+            margin: 150px;
         }
 
         .box-content {
@@ -83,12 +83,12 @@
             let user_Age = document.getElementById("user").value;
             // console.log(user_Age);
 
-            if(user_Age === ""){
+            if (user_Age === "") {
                 alert("Please Enter your Age");
                 return;
             }
 
-            if(user_Age <= 0){
+            if (user_Age <= 0) {
                 alert("please Enter Vaild Age")
             }
 
