@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result Checker</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(176, 177, 178);
+            color: #000;
+            font-family: sans-serif;
+        }
+
+        .two-box {
+            display: flex;
+            margin: 10px;
+        }
+
+        .Left-Box {
+            background-color: #fff;
+            width: 50%;
+            height: auto;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .Left-Box h2 {
+            padding-bottom: 15px;
+        }
+
+        .Right-Box {
+            background-color: #fff;
+            width: 50%;
+            height: auto;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .sub-input {
+            display: flex;
+            flex-direction: column;
+            margin: 15px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #4e4d4d;
+        }
+
+        input {
+            width: 50%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            border: 1px solid #cbc9c9;
+            font-size: 15px;
+        }
+
+        .marks-input {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .marks-input .sub-input input {
+            width: 90%;
+        }
+
+        button {
+            padding: 20px 30px;
+            margin: 15px;
+            background-color: #2dcbdc;
+            border-radius: 10px;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .Avg-box {
+            width: 90%;
+            height: auto;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, rgba(42, 149, 155, 1) 0%, rgba(87, 199, 133, 1) 97%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .Avg-box p {
+            padding-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .Avg-box h3 {
+            font-size: 35px;
+            padding-bottom: 10px;
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px;
+
+        }
+
+        .box .one-box {
+            width: 50%;
+            background-color: #c3daf5;
+            border-radius: 15px;
+            padding: 25px;
+            color: #2c66e3;
+            font-weight: 600;
+        }
+
+        .box .result-box {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+        }
+
+        .Pass {
+            width: 100%;
+            min-height: 108px;
+            background-color: #b2fab6;
+            border-radius: 15px;
+            padding: 25px;
+            color: #22a41b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Fail {
+            width: 100%;
+            min-height: 108px;
+            background-color: #fab2b2;
+            border-radius: 15px;
+            padding: 25px;
+            color: #d71010;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #display-all {
+            background-color: #f0f4f4;
+            height: auto;
+            margin: 20px;
+            color: #000;
+            padding: 20px;
+        }
+
+        .grades-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+        }
+
+        .grades-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #4f82bc;
+            padding: 30px;
+            margin-top: 18px;
+        }
+
+        .grades-list p {
+            font-size: 25px;
+        }
+
+        @media(max-width: 850px) {
+            .two-box {
+                flex-direction: column;
+            }
+
+            .Left-Box,
+            .Right-Box {
+                width: auto;
+            }
+
+            .marks-input {
+                flex-direction: column;
+            }
+
+            input {
+                width: 100%;
+            }
+
+            .grades-list {
+                flex-direction: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="two-box">
+
+        <!-- ===== Left-side ===== -->
+        <div class="Left-Box">
+            <h2>Add Your Grades</h2>
+
+            <div class="sub-input">
+                <label for="subject">Subject Name</label>
+                <input type="text" id="subjectName" placeholder="Math,Science,English...">
+            </div>
+
+            <div class="marks-input">
+                <div class="sub-input">
+                    <label for="marksScored">Marks Secord</label>
+                    <input type="number" id="marksScored" placeholder="Enter Marks">
+                </div>
+
+                <div class="sub-input">
+                    <label for="TotalMarks">Total Marks</label>
+                    <input type="number" id="TotalMarks" placeholder="Enter Total Marks">
+                </div>
+
+            </div>
+            <button type="button" class="btn" onclick="add()">Add Grade</button>
+        </div>
+
+        <!-- ===== Right-side ===== -->
+        <div class="Right-Box">
+            <h2>Your Results</h2>
+
+            <div id="output">
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <div id="display-all">
+        <div class="grades-header">
+            <h2>Your Grades</h2>
+        </div>
+    </div>
+
+    <script>
+        let total_Sub = 0;
+        let Total_Marks_ALL = 0;
+        let Total_Marks_Scored = 0;
+        let isAnySubjectFail = false;
+
+        function add() {
+            let subject_Name = document.getElementById("subjectName").value;
+            let marks_Scored = Number(document.getElementById("marksScored").value);
+            let Total_Marks = Number(document.getElementById("TotalMarks").value);
+            let totalsub = document.getElementById("totalsub");
+
+            Total_Marks_ALL += Total_Marks;
+            // console.log(Total_Marks_ALL);
+
+            Total_Marks_Scored += marks_Scored;
+            // console.log(Total_Marks_Scored);
+
+            total_Sub++;
+            // console.log(total_Sub);
+
+            // percentage find 
+            let percentage = (Total_Marks_Scored / Total_Marks_ALL) * 100;
+            // console.log(percentage);
+
+            let subject_Percentage = (marks_Scored / Total_Marks) * 100;
+            // console.log(subject_Percentage);
+
+            let subject_Result = Ispass(subject_Percentage);
+            // console.log(subject_Result);
+
+            if (subject_Result === "Fail") {
+                isAnySubjectFail = true;
+            }
+
+            let final_Result = isAnySubjectFail ? "Fail" : "Pass";
+
+            //  grades find 
+            let grade = final_Result === "Fail" ? "-" : grades(percentage);
+            // console.log(grade);
+
+            let Result_Dispaly = document.getElementById("output");
+            Result_Dispaly.innerHTML = `
+                <div class="Avg-box">
+                    <p>Overall Avgerage</p>
+
+                    <h3 id="percentage">${percentage.toFixed(2)}%</h3>
+
+                    <p id="grades">Grade: ${grade}</p>
+                </div>
+                <div class="box">
+                        <div class="one-box">
+                            <h2 id="totalSub">${total_Sub}</h2>
+                            <p>Subjects</p>
+                        </div>
+
+                        <div class="result-box">
+                            <h2 id="Result" class="${final_Result === "Pass" ? "Pass" : "Fail"}">${final_Result}</h2>
+                        </div>
+                    </div>
+                `;
+
+            let display_All = document.getElementById("display-all");
+            display_All.innerHTML += `
+                <div class="grades-list">
+                        <h2>${subject_Name}</h2>
+                        <p>${marks_Scored}/${Total_Marks} Marks</p>
+                </div>
+                `;
+        }
+
+        function grades(percentage) {
+            if (percentage >= 80) {
+                return "A";
+            } else if (percentage >= 60) {
+                return "B";
+            } else if (percentage > 35) {
+                return "C";
+            } else {
+                return "-";
+            }
+        }
+
+        function Ispass(subject_Percentage) {
+            if (subject_Percentage > 35) {
+                return "Pass";
+            } else {
+                return "Fail";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
